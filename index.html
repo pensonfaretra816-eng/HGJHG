@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oferta Exclusiva 2026</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Outfit',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#0b1120;
+    overflow:hidden;
+    color:#fff;
+}
+
+/* Glow animado de fundo */
+body::before{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    background:radial-gradient(circle,#7c3aed55,transparent 70%);
+    animation:pulse 6s infinite alternate;
+}
+
+@keyframes pulse{
+    from{transform:scale(1);}
+    to{transform:scale(1.4);}
+}
+
+.container{
+    position:relative;
+    z-index:2;
+    width:92%;
+    max-width:420px;
+    padding:45px 30px;
+    border-radius:30px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 40px 100px rgba(0,0,0,0.7);
+    text-align:center;
+}
+
+h1{
+    font-size:30px;
+    font-weight:900;
+    background:linear-gradient(90deg,#00f5ff,#7c3aed);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+p{
+    font-size:14px;
+    opacity:0.8;
+    margin:15px 0 30px;
+}
+
+.progress-wrapper{
+    width:100%;
+    height:18px;
+    background:rgba(255,255,255,0.08);
+    border-radius:50px;
+    overflow:hidden;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#00f5ff,#7c3aed);
+    border-radius:50px;
+    box-shadow:0 0 25px #00f5ff;
+    transition:width .3s;
+}
+
+.percent{
+    margin-top:15px;
+    font-size:24px;
+    font-weight:900;
+    color:#00f5ff;
+}
+
+.timer{
+    margin-top:10px;
+    font-size:13px;
+    opacity:0.7;
+}
+
+button{
+    margin-top:30px;
+    padding:16px;
+    width:100%;
+    border:none;
+    border-radius:50px;
+    font-weight:800;
+    font-size:16px;
+    cursor:not-allowed;
+    background:linear-gradient(90deg,#00f5ff,#7c3aed);
+    color:#fff;
+    opacity:0.5;
+    transition:.3s;
+}
+
+button.active{
+    cursor:pointer;
+    opacity:1;
+    box-shadow:0 15px 50px rgba(124,58,237,0.6);
+}
+
+button.active:hover{
+    transform:scale(1.07);
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>OFERTA 2026</h1>
+    <p>Validando sua condição personalizada...</p>
+
+    <div class="progress-wrapper">
+        <div id="progress" class="progress"></div>
+    </div>
+
+    <div id="percent" class="percent">0%</div>
+    <div id="timer" class="timer">Aguarde...</div>
+
+    <button id="btn" onclick="redirect()">LIBERANDO...</button>
+</div>
+
+<script>
+let value = 0;
+const progress = document.getElementById("progress");
+const percent = document.getElementById("percent");
+const timer = document.getElementById("timer");
+const btn = document.getElementById("btn");
+
+let countdown = 4;
+
+const interval = setInterval(()=>{
+    value++;
+    progress.style.width = value + "%";
+    percent.innerText = value + "%";
+
+    if(value % 25 === 0 && countdown > 0){
+        countdown--;
+        timer.innerText = "Finalizando em " + countdown + "s...";
+    }
+
+    if(value >= 100){
+        clearInterval(interval);
+        percent.innerText = "PRONTO ✔";
+        timer.innerText = "Sua condição foi liberada!";
+        btn.classList.add("active");
+        btn.innerText = "CONTINUAR";
+        btn.style.cursor = "pointer";
+    }
+
+},30);
+
+function redirect(){
+    if(value >= 100){
+        window.location.href = "https://lambent-sunburst-82896a.netlify.app/";
+    }
+}
+</script>
+
+</body>
+</html>
